@@ -10,7 +10,7 @@ const randomEmailAddress = `${randomUsername}@${domainName}`;
 function generateRandomCompanyName(): string {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   const randomIndex = Math.floor(Math.random() * letters.length);
-  const randomString = letters[randomIndex].toUpperCase() + letters.slice(1, 7);
+  const randomString = letters[randomIndex].toUpperCase() + letters.slice(1, 10);
   return `${randomString} Enterprise`;
 }
 
