@@ -10,8 +10,8 @@ const randomEmailAddress = `${randomUsername}@${domainName}`;
 function generateRandomCompanyName(): string {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   const randomIndex = Math.floor(Math.random() * letters.length);
-  const randomString = letters[randomIndex].toUpperCase() + letters.slice(1, 7);
-  return `${randomString} MY Enterprise`;
+  const randomString = letters[randomIndex].toUpperCase() + letters.slice(1, 10);
+  return `${randomString} Enterprise`;
 }
 
 export async function EnterpriseLoginToDashboard(page: Page): Promise<void> {
