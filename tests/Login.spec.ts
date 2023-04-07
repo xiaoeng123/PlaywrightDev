@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { Page, test, expect } from '@playwright/test';
 
 // Generate an 8-digit random number
 const randomNumber = Math.floor(10000000 + Math.random() * 90000000);
@@ -11,10 +11,10 @@ function generateRandomCompanyName(): string {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   const randomIndex = Math.floor(Math.random() * letters.length);
   const randomString = letters[randomIndex].toUpperCase() + letters.slice(1, 7);
-  return `${randomString} Enterprise`;
+  return `${randomString} MY Enterprise`;
 }
 
-test('Enterprise Login to Dashboard', async ({ page }) => {
+export async function EnterpriseLoginToDashboard(page: Page): Promise<void> {
   await page.goto('https://play.foodmarkethub.com/');
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Food Market Hub/);
@@ -29,9 +29,9 @@ test('Enterprise Login to Dashboard', async ({ page }) => {
   await expect(page).toHaveURL(/.*dashboard/);
   // Validate text
   await page.getByText(/We are glad to see you*MY Enterprise!/);
-});
+};
 
-test('Enterprise Registration', async ({ page }) => {
+test('EnterpriseRegistration', async ({ page }) => {
   await page.goto('https://play.foodmarkethub.com/');
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Food Market Hub/);
@@ -58,5 +58,8 @@ test('Enterprise Registration', async ({ page }) => {
   //Redirect to Dashboard
   await page.getByRole('button', { name: 'Close this dialog' }).click();
   await expect(page).toHaveURL(/.*dashboard/);
+  //await page.getByText(/We are glad to see you "${generateRandomCompanyName()}"!/);
+  const companyName = (generateRandomCompanyName());
+  await page.getByText(`text=/We are glad to see you ${companyName}!/`);
 });
 
